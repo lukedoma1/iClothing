@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Group8_iCLOTHINGApp.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Layout = "~/Views/Shared/SignedInLayout.cshtml";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="text-center" style="margin-bottom:20px">
+    <h2>Browse iCLOTHING Products</h2>
+</div>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            @using (Html.BeginForm("Index", "BrowseProducts", FormMethod.Get, new { @class = "text-center" }))
+            {
+                <div class="form-group">
+                    <input type="text" name="searchTerm" placeholder="Search products" class="form-control mb-2" />
+                    <input type="submit" name="action" value="Search" class="btn btn-outline-dark btn mb-2" />
+                </div>
+
+                <div class="form-group" style="margin-top: 50px;">
+                    @Html.DropDownList("BrandId", (SelectList)ViewBag.BrandId, "All Brands", new { @class = "form-control mb-2 mr-sm-2" })
+                    <input type="submit" name="action" value="Filter" class="btn btn-outline-dark btn mb-2" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<table class="table text-center">
+    <tr>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity Available</th>
+        <th>Brand</th>
+        <th>Brand Name</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.productName)</td>
+            <td>@Html.DisplayFor(modelItem => item.productDescription)</td>
+            <td>@Html.DisplayFor(modelItem => item.productPrice)</td>
+            <td>@Html.DisplayFor(modelItem => item.productQty)</td>
+            <td>@Html.DisplayFor(modelItem => item.Brand.brandName)</td>
+            <td>
+                @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCarts", new
+           {
+               cartID = item.productID,
+               cartProductID = item.productID,
+               cartProductQty = 1,
+               cartProductPrice = item.productPrice
+           }, new { @class = "btn btn-outline-dark btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<div class="row justify-content-center md-4">
+    <div class="col-md-6 text-center">
+        <h4>Question about a product?</h4>
+        @Html.ActionLink("Make a Query", "Create", "UserQueries", null, new { @class = "btn btn-outline-dark btn" })
+    </div>
+</div>

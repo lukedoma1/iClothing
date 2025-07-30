@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Group8_iCLOTHINGApp.Models.UserComments>
+
+@{
+    ViewBag.Title = "Admin Responses";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container">
+    <h2>Admin Responses</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Comment No</th>
+                <th>Date</th>
+                <th>Comment Description</th>
+                <th>Customer Name</th>
+                <th>Admin Response</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+                <tr>
+                    <td>@comment.commentNo</td>
+                    <td>@comment.commentDate.ToString("yyyy-MM-dd")</td>
+                    <td>@comment.commentDescription</td>
+                    <td>@comment.UserPassword.userAccountName</td>
+                    <td>@comment.AdminResponse</td>
+                    <td>
+                        @using (Html.BeginForm("SubmitResponse", "UserComments"))
+                        {
+                            @Html.Hidden("commentNo", comment.commentNo)
+                            @Html.TextArea("adminResponse", null, new { @class = "form-control", rows = "2" })
+                            <button type="submit" class="btn btn-primary">Submit Response</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

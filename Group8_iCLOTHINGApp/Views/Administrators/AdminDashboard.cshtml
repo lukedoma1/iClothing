@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "AdminDashboard";
+}
+
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+    .dashboard-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .dashboard-item {
+        text-align: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, background-color 0.3s ease; /* Added background-color transition */
+        max-width: 180px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .dashboard-item:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dashboard-item img {
+            max-height: 90%; 
+            max-width: 90%; 
+            border-radius: 10px;
+            margin-bottom: auto; 
+        }
+
+        .dashboard-item h2,
+        .dashboard-item p {
+            margin: 0; 
+            font-size: 25px;
+        }
+
+    .aboutUs {
+        font-size: 30px;
+        font-weight: 400;
+        color: #23a6d5;
+        text-align: center;
+        position: relative; 
+        padding: 20px; 
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-5 text-center mx-auto">
+        <h2 class="aboutUs mb-8">Admin Dashboard</h2>
+    </div>
+</div>
+
+<div class="dashboard-container">
+    <a href="@Url.Action("Index", "Brands")" class="dashboard-item">
+        <img src="../../Pictures/Brands.PNG" alt="Brand Image">
+        <h2>Modify Brands</h2>
+    </a>
+
+    <a href="@Url.Action("Index", "Categories")" class="dashboard-item">
+        <img src="../../Pictures/Categories.PNG" alt="Category Image">
+        <h2>Modify Categories</h2>
+    </a>
+
+    <a href="@Url.Action("Index", "Departments")" class="dashboard-item">
+        <img src="../../Pictures/Departments.PNG" alt="Department Image">
+        <h2>Modify Departments</h2>
+    </a>
+
+    <a href="@Url.Action("Index", "Products")" class="dashboard-item">
+        <img src="../../Pictures/Products.PNG" alt="Product Image">
+        <h2>Modify Products</h2>
+    </a>
+
+    <a href="@Url.Action("SeeAdminResponse", "UserComments")" class="dashboard-item">
+        <img src="../../Pictures/comments.PNG" alt="Comments Image">
+        <h2>Customer Feedback</h2>
+    </a>
+</div>
+

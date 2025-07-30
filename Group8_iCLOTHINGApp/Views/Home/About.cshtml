@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Group8_iCLOTHINGApp.Models.AboutUs>
+
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .aboutUs {
+        font-size: 24px;
+        font-weight: bold;
+        background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        position: relative;
+        padding: 20px;
+    }
+
+    .card {
+        border-radius: 15px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        color: #23a6d5;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        color: #555;
+        font-size: 16px;
+    }
+</style>
+
+    <div class="row">
+            <div class="col-md-2 text-center mx-auto">
+                <h2 class="aboutUs mb-3">About Us</h2>
+        </div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Who are we?</h3>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.companyBusinessDescription)</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card gradient">
+                    <div class="card-body">
+                        <h3 class="card-title">Contact Information</h3>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.companyContactInfo)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Address</h3>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.companyAddress)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Shipping Policy</h3>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.companyShippingPolicy)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Return Policy</h3>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.companyReturnPolicy)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }

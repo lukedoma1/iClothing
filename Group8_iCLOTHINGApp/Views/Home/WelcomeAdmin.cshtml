@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "WelcomeAdmin";
+}
+
+@{
+    Layout = "~/Views/Shared/WelcomeLayout.cshtml";
+}
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .content {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #333333;
+        text-align: center;
+        font-size: 24px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .iclothing {
+        background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 50px;
+    }
+
+    .continue-link {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: #007bff;
+        text-decoration: none;
+    }
+
+
+    .fullscreen-anchor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="content">
+        @if (Session["UserName"] != null)
+        {
+            <p>Hello <strong>@Session["UserName"].ToString()</strong>, welcome to</p>
+        }
+        <p class="iclothing">iClothing</p>
+    </div>
+    <a href="@Url.Action("AdminDashboard", "Administrators")" class="fullscreen-anchor">
+        <p class="continue-link">Click anywhere to continue</p>
+    </a>
+</body>
+</html>

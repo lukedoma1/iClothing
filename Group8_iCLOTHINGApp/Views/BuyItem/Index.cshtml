@@ -1,0 +1,101 @@
+﻿
+
+@model IEnumerable<Group8_iCLOTHINGApp.Models.Product>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@{
+    Layout = "~/Views/Shared/SignedInLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.First().productName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.First().productName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.First().productName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Add other form fields here -->
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<hr />
+
+<h2>Products</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().productQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Brand.brandName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.brandName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.productID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.productID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.productID })
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

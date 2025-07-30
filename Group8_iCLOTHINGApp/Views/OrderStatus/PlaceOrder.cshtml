@@ -1,0 +1,301 @@
+﻿@model Group8_iCLOTHINGApp.Models.OrderStatus
+
+@{
+    ViewBag.Title = "PlaceOrder";
+}
+
+@{
+    Layout = "~/Views/Shared/SignedInLayout.cshtml";
+}
+
+<style>
+    .btn-confirm-order {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Billing Information</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Card Name")
+            <div class="col-md-10">
+                <input type="text" id="CardName" class="form-control" pattern="[a-zA-Z ]+" title="Please enter only letters" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Card Number")
+            <div class="col-md-10">
+                <input type="text" id="CardNumber" class="form-control" pattern="[0-9]{16}" title="Please enter a 16-digit card number" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("CVC")
+            <div class="col-md-10">
+                <input type="text" id="CVC" class="form-control" pattern="[0-9]{3}" title="Please enter a 3-digit CVC" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Expiration Date")
+            <div class="col-md-10">
+                <input type="text" id="ExpirationDate" class="form-control" pattern="(0[1-9]|1[0-2])\/\d{2}" title="Please enter a valid expiration date in the format MM/YY" required />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Shipping Information</h4>
+            <hr />
+            <div class="form-group">
+                @Html.Label("Name")
+                <div class="col-md-10">
+                    <input type="text" id="ShippingName" class="form-control" pattern="[a-zA-Z ]+" title="Please enter only letters" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Phone Number")
+                <div class="col-md-10">
+                    <input type="tel" id="PhoneNumber" class="form-control" pattern="\d{3}-\d{3}-\d{4}" title="Please enter a valid phone number in the format XXX-XXX-XXXX" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Email Address")
+                <div class="col-md-10">
+                    <input type="email" id="EmailAddress" class="form-control" title="Please enter a valid email address" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Street 1")
+                <div class="col-md-10">
+                    <input type="text" id="Street1" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Street 2")
+                <div class="col-md-10">
+                    <input type="text" id="Street2" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("City")
+                <div class="col-md-10">
+                    <input type="text" id="City" class="form-control" pattern="[a-zA-Z ]+" title="Please enter only letters" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("State")
+                <div class="col-md-10">
+                    <input type="text" id="State" class="form-control" pattern="[a-zA-Z]{2}" title="Please enter a valid 2-letter state code" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Zip")
+                <div class="col-md-10">
+                    <input type="text" id="Zip" class="form-control" pattern="\d{5}" title="Please enter a valid 5-digit ZIP code" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Country")
+                <div class="col-md-10">
+                    <input type="text" id="Country" class="form-control" pattern="[a-zA-Z ]+" title="Please enter only letters" required />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Confirm Order", "ConfirmOrder", "OrderStatus", new { }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Cart", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        document.getElementById('CardName').addEventListener('input', function (event) {
+
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, '');
+
+            event.target.value = sanitizedValue;
+        });
+    </script>
+    <script>
+        document.getElementById('CardNumber').addEventListener('input', function (event) {
+
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/\D/g, '');
+
+            sanitizedValue = sanitizedValue.slice(0, 16);
+
+            sanitizedValue = sanitizedValue.replace(/(.{4})/g, '$1 ');
+
+            sanitizedValue = sanitizedValue.trim();
+
+            event.target.value = sanitizedValue;
+
+            document.getElementById('CardNumber').addEventListener('keydown', function (event) {
+                if (event.key === 'Backspace') {
+                    return true;
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('CVC').addEventListener('input', function (event) {
+
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/\D/g, '');
+
+            sanitizedValue = sanitizedValue.slice(0, 3);
+
+            event.target.value = sanitizedValue;
+
+            document.getElementById('CVC').addEventListener('keydown', function (event) {
+                if (event.key === 'Backspace') {
+                    return true;
+                }
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('ExpirationDate').addEventListener('input', function (event) {
+
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/\D/g, '');
+
+            var formattedValue = '';
+            if (sanitizedValue.length > 0) {
+                formattedValue = sanitizedValue.slice(0, 2);
+                if (sanitizedValue.length > 2) {
+                    formattedValue += '/' + sanitizedValue.slice(2, 4);
+                }
+            }
+            event.target.value = formattedValue;
+        });
+    </script>
+    <script>
+        document.getElementById('ShippingName').addEventListener('input', function (event) {
+
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, '');
+
+            event.target.value = sanitizedValue;
+        });
+    </script>
+
+    <script>
+        document.getElementById('PhoneNumber').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/\D/g, '');
+
+            var formattedValue = '';
+            if (sanitizedValue.length > 0) {
+                formattedValue = sanitizedValue.slice(0, 3);
+                if (sanitizedValue.length > 3) {
+                    formattedValue += '-' + sanitizedValue.slice(3, 6);
+                }
+                if (sanitizedValue.length > 6) {
+                    formattedValue += '-' + sanitizedValue.slice(6, 10);
+                }
+            }
+            event.target.value = formattedValue;
+        });
+    </script>
+
+    <script>
+        document.getElementById('EmailAddress').addEventListener('input', function (event) {
+            var inputValue = event.target.value.trim(); // Trim any leading or trailing whitespace
+            event.target.value = inputValue; // Update the input value
+        });
+    </script>
+
+    <script>
+        document.getElementById('Street1').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+            // You can add any additional validation or formatting logic here if needed
+        });
+    </script>
+
+    <script>
+        document.getElementById('Street2').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+            // You can add any additional validation or formatting logic here if needed
+        });
+    </script>
+
+    <script>
+        document.getElementById('City').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, ''); // Allow only letters and spaces
+
+            event.target.value = sanitizedValue;
+        });
+    </script>
+
+    <script>
+        document.getElementById('State').addEventListener('input', function (event) {
+            var inputValue = event.target.value.toUpperCase(); // Convert input to uppercase
+
+            var sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, '');
+
+            sanitizedValue = sanitizedValue.slice(0, 2);
+
+            event.target.value = sanitizedValue; // Update the input value
+        });
+    </script>
+
+    <script>
+        document.getElementById('Zip').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/\D/g, ''); // Remove non-numeric characters
+
+            sanitizedValue = sanitizedValue.slice(0, 6);
+
+            event.target.value = sanitizedValue;
+        });
+    </script>
+
+    <script>
+        document.getElementById('Country').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+
+            var sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, ''); // Allow only letters and spaces
+
+            event.target.value = sanitizedValue;
+        });
+    </script>
+
+}

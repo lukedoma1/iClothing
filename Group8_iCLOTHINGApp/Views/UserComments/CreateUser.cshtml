@@ -1,0 +1,40 @@
+﻿@model Group8_iCLOTHINGApp.Models.UserComments
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+@{
+    Layout = "~/Views/Shared/SignedInLayout.cshtml";
+}
+
+<div class="text-center mb-4">
+    <h2>Submit Feedback</h2>
+    <p>Have feedback? We'd love to hear what you think! Fill out the form below.</p>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mb-4">
+            @Html.TextAreaFor(model => model.commentDescription, new { @class = "form-control mx-auto d-block", rows = 5 })
+            @Html.ValidationMessageFor(model => model.commentDescription, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <button type="submit" class="btn btn-outline-dark">Submit Feedback</button>
+    }
+
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

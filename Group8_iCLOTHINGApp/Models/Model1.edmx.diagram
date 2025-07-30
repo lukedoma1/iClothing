@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e5e714f08b2c4ca1adb3f9e3aa78441c" Name="Diagram1" ZoomLevel="90">
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.AboutUs" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.Administrator" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.Brand" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.Category" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.Customer" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.Department" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.email" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.ItemDelivery" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.OrderStatus" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.Product" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.ShoppingCart" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.UserComments" Width="1.5" PointX="10.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.UserPassword" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Group8_iCLOTHINGDBModel.UserQuery" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_Product_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_Category_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_Category_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_UserComments_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_UserPassword_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_ShoppingCart_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Group8_iCLOTHINGDBModel.FK_UserComments_Customer1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

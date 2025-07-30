@@ -1,0 +1,36 @@
+﻿@model List<Group8_iCLOTHINGApp.Models.UserComments>
+
+@{
+    ViewBag.Title = "User Comments";
+    Layout = "~/Views/Shared/SignedInLayout.cshtml";
+}
+
+<div class="container">
+    <h2>User Comments</h2>
+
+    <a href="@Url.Action("CreateUser", "UserComments")" class="btn btn-primary">Give Feedback</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Comment No</th>
+                <th>Date</th>
+                <th>Comment Description</th>
+                <th>Customer Username</th>
+                <th>Admin Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var comment in Model)
+            {
+                <tr>
+                    <td>@comment.commentNo</td>
+                    <td>@comment.commentDate.ToString("yyyy-MM-dd")</td>
+                    <td>@comment.commentDescription</td>
+                    <td>@comment.UserPassword.userAccountName</td>
+                    <td>@comment.AdminResponse</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
